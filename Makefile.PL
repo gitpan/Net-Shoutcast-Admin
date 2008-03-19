@@ -1,4 +1,4 @@
-# $Id: Makefile.PL 222 2008-02-12 23:40:28Z davidp $
+# $Id: Makefile.PL 315 2008-03-19 00:07:39Z davidp $
 use strict;
 use warnings;
 use ExtUtils::MakeMaker;
@@ -16,6 +16,7 @@ WriteMakefile(
         'LWP::UserAgent' => 0,
         'XML::Simple'    => 0,
     },
+    NO_META             => 1,
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Net-Shoutcast-Admin-*' },
 );

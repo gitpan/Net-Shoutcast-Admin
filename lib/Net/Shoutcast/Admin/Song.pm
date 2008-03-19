@@ -1,12 +1,12 @@
 package Net::Shoutcast::Admin::Song;
-# $Id: Song.pm 229 2008-02-13 00:10:09Z davidp $
+# $Id: Song.pm 315 2008-03-19 00:07:39Z davidp $
 
 use warnings;
 use strict;
 use Carp;
 
 use vars qw($VERSION);
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 
 =head1 NAME
@@ -35,10 +35,7 @@ perhaps $song->lyrics to attempt to fetch lyrics.
     if ($shoutcast->source_connected) {
         my $song = $shoutcast->current_song;
         
-        printf "Current song is %s by %s",
-            $song->title,
-            $song->artist
-        ;
+        print "Current song is: " . $song->title;
     } else {
         print "No source is currently connected.";
     }
@@ -71,6 +68,10 @@ as follows:
 
 The title of the song
 
+=item I<played_at>
+
+The timestamp this song started playing.
+
 =back
 
 =cut
@@ -84,7 +85,10 @@ sub new {
     $self->{last_update} = 0;
     
     my %acceptable_params = map { $_ => 1 } 
+        qw(title played_at);
+    my %required_params = map { $_ => 1 } 
         qw(title);
+    
     
     # make sure we haven't been given any bogus parameters:
     if (my @bad_params = grep { ! $acceptable_params{$_} } keys %params) {
@@ -95,7 +99,7 @@ sub new {
     
     $self->{$_} = $params{$_} for keys %acceptable_params;
     
-    if (my @missing_params = grep { ! $self->{$_} } keys %acceptable_params) {
+    if (my @missing_params = grep { ! $self->{$_} } keys %required_params) {
         carp "Net::Shoutcast::Admin->new() must be supplied with params: "
             . join ',', @missing_params;
         return;
@@ -116,7 +120,9 @@ sub title {
     return shift->{title};
 }
 
-
+sub played_at {
+    return shift->{played_at};
+}
 
 
 
@@ -142,7 +148,8 @@ David Precious  C<< <davidp@preshweb.co.uk> >>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2008, David Precious C<< <davidp@preshweb.co.uk> >>. All rights reserved.
+Copyright (c) 2008, David Precious C<< <davidp@preshweb.co.uk> >>. 
+All rights reserved.
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.

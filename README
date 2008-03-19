@@ -18,13 +18,6 @@ To install this module, run the following commands:
 	make test
 	make install
 
-Alternatively, to install with Module::Build, you can use the following commands:
-
-	perl Build.PL
-	./Build
-	./Build test
-	./Build install
-
 
 DEPENDENCIES
 
@@ -39,4 +32,4 @@ Copyright (C) 2008, David Precious
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
-$Id: README 222 2008-02-12 23:40:28Z davidp $
+$Id: README 315 2008-03-19 00:07:39Z davidp $

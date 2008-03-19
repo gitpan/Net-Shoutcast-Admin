@@ -1,5 +1,5 @@
 package Net::Shoutcast::Admin::Listener;
-# $Id: Listener.pm 229 2008-02-13 00:10:09Z davidp $
+# $Id: Listener.pm 315 2008-03-19 00:07:39Z davidp $
 
 use warnings;
 use strict;
@@ -34,7 +34,7 @@ An object representing a listener, returned by Net::Shoutcast::Admin.
         
         for my $listener (@listeners) {
             printf "Listener from %s, listening for %s",
-                $listener->host, $listener->listen_length
+                $listener->host, $listener->listen_time
             ;
         }
     } else {

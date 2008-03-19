@@ -10,3 +10,5 @@ t/00.load.t
 t/1-basic.t
 t/2-pod.t
 t/3-pod-coverage.t
+t/4-mock-operation.t
+eg/example.pl
